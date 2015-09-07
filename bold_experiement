@@ -1,0 +1,7 @@
+arr = ["n","*","m","*","*","p"]
+
+first_index = arr.index("*")
+next_index = first + 1
+
+if arr[second] == "*"
+first_pair = [first_index, next_index]
