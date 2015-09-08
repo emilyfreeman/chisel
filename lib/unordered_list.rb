@@ -32,15 +32,19 @@ class UnorderedList
 
   def format_bold_multi_item_array(list_split_substring)
     parsed_list = list_split_substring.map.with_index do |e, index|
-      if index == 0
-        e = "\n<ul>\n<li>#{e}</li>\n"
-      elsif index == list_split_substring.length - 1
-        e = "\n<li>#{e}</li>\n</ul>\n"
-      else
-        e = "<li>#{e}</li>"
-      end
+      final_format(e, index)
     end
     parsed_substring = parsed_list.join
+  end
+
+  def final_format(e, index)
+    if index == 0
+      e = "\n<ul>\n<li>#{e}</li>\n"
+    elsif index == list_split_substring.length - 1
+      e = "\n<li>#{e}</li>\n</ul>\n"
+    else
+      e = "<li>#{e}</li>"
+    end
   end
 
 end

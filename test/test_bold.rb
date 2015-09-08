@@ -8,12 +8,6 @@ class BoldTest < Minitest::Test
   def setup
     @bold = Bold.new
   end
-  def test_empty_string_retuns_empty_string
-    input = ""
-    expected = ""
-    output = @bold.parse(input)
-    assert_equal expected, output
-  end
   def test_simple_bold
     input = "**yay**"
     expected = "<strong>yay</strong>"

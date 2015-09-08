@@ -6,6 +6,7 @@ class Heading
   def parse(substring)
     create_array_from_heading(substring)
     heading_hash_count(@heading_split_substring)
+    join_substring(@heading_split_substring)
     Inline.new.parse(@parsed_substring)
   end
 
@@ -14,18 +15,20 @@ class Heading
   end
 
   def heading_hash_count(heading_split_substring)
-    hash_num = 0
+    @hash_num = 0
     heading_split_substring.map! do |e|
       break if e != "#"
-      hash_num += 1
+      @hash_num += 1
       e.delete! e
     end
-    heading_num = hash_num
-    parsed_substring = heading_split_substring.join
-      if parsed_substring.start_with? " "
-        parsed_substring.strip!
+  end
+
+  def join_substring(heading_split_substring)
+    @parsed_substring = heading_split_substring.join
+      if @parsed_substring.start_with? " "
+        @parsed_substring.strip!
       end
-    @parsed_substring = "\n<h#{heading_num}>#{parsed_substring}</h#{heading_num}>\n"
+    @parsed_substring = "\n<h#{@hash_num}>#{@parsed_substring}</h#{@hash_num}>\n"
   end
 
 end
